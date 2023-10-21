@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>ArchiveReader</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Exceptions\**" />
+		<Compile Remove="Helpers\**" />
+		<Compile Remove="Localization\**" />
+		<Compile Remove="Mime\**" />
+		<Compile Remove="Outlook\**" />
+		<Compile Remove="Rtf\**" />
+		<Content Remove="Exceptions\**" />
+		<Content Remove="Helpers\**" />
+		<Content Remove="Localization\**" />
+		<Content Remove="Mime\**" />
+		<Content Remove="Outlook\**" />
+		<Content Remove="Rtf\**" />
+		<EmbeddedResource Remove="Exceptions\**" />
+		<EmbeddedResource Remove="Helpers\**" />
+		<EmbeddedResource Remove="Localization\**" />
+		<EmbeddedResource Remove="Mime\**" />
+		<EmbeddedResource Remove="Outlook\**" />
+		<EmbeddedResource Remove="Rtf\**" />
+		<None Remove="Exceptions\**" />
+		<None Remove="Helpers\**" />
+		<None Remove="Localization\**" />
+		<None Remove="Mime\**" />
+		<None Remove="Outlook\**" />
+		<None Remove="Rtf\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Reader.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="wwwroot\css\Home.css" />
+		<None Include="wwwroot\image\adopteq_logo_white.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.15.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.6.1" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.6.1" />
+		<PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="2.6.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.Data.OleDb" Version="7.0.0" />
+		<PackageReference Include="System.DirectoryServices.AccountManagement" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <None Update="Error.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties />
+		</VisualStudio>
+	</ProjectExtensions>
+
+</Project>

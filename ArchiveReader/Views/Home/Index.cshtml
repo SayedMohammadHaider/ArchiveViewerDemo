@@ -1,0 +1,217 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link href="~/css/Home.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<input id="files" onclick="getFolderPath()" style="display:none;" webkitdirectory directory multiple type="file" />
+
+
+<div class="grid-container">
+    <div style="display:none" id="errorMessage">
+        @Html.Raw(ViewBag.errorTest)
+    </div>
+    <div class="navHeading">
+        <select id="fileOptions" class="chooseFileOption">
+            <option selected disabled value="File"><h2 class="fileOptionDesing">File</h2></option>
+            <option value="Folder">Open Folder Archive</option>
+        </select>
+        <label class="validSetup">
+            Valid to: <span class="@Html.Raw(ViewBag.validToTextColor) validToText">
+                @if (ViewBag.validToTextColor != "greenColor")
+                {
+                    <span class="validToTooltiptext @Html.Raw(ViewBag.validToTooltipBackgroundColor)">@Html.Raw(ViewBag.tooltipText)</span>
+                }
+                @if (ViewBag.validToTextColor == "redColor")
+                {
+                    <script type="text/javascript">
+                        $(function () {
+                            licenseExpiryDialog(true);
+                        });
+                    </script>
+                }
+                @Html.Raw(ViewBag.expiryDate)
+                @if (ViewBag.isAdmin == true)
+                {
+                    <input type="button" value="Admin View" onclick="@("window.location.href='" + @Url.Action("Admin", "Home") + "'");" />
+                }
+
+            </span>
+        </label>
+    </div>
+    <div class="containerBody">
+        <div class="grid-item sideMenu">
+            <div class="align-space-evenly-grid">
+                <div class="title-cell">
+                    <div class="title-grid">
+                        <div class="float-search">
+                            <input class="searchClass" type="text" id="search-input-text" onkeyup='searchTitleList("titleList","search-input-text")' placeholder="Search Title" />
+                        </div>
+                        <div class="float-sort">
+                            <svg class="arrowUp" id="arrowUpId" onclick='arrowUpClick()' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path d="M176 352h-48V48a16 16 0 0 0-16-16H80a16 16 0 0 0-16 16v304H16c-14.19 0-21.36 17.24-11.29 27.31l80 96a16 16 0 0 0 22.62 0l80-96C197.35 369.26 190.22 352 176 352zm240-64H288a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h56l-61.26 70.45A32 32 0 0 0 272 446.37V464a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16h-56l61.26-70.45A32 32 0 0 0 432 321.63V304a16 16 0 0 0-16-16zm31.06-85.38l-59.27-160A16 16 0 0 0 372.72 32h-41.44a16 16 0 0 0-15.07 10.62l-59.27 160A16 16 0 0 0 272 224h24.83a16 16 0 0 0 15.23-11.08l4.42-12.92h71l4.41 12.92A16 16 0 0 0 407.16 224H432a16 16 0 0 0 15.06-21.38zM335.61 144L352 96l16.39 48z" />
+                            </svg>
+                            <svg class="arrowDown" id="arrowDownId" onclick='arrowDownClick()' title="Sort A-Z" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                <path d="M183.6 42.4C177.5 35.8 169 32 160 32s-17.5 3.8-23.6 10.4l-88 96c-11.9 13-11.1 33.3 2 45.2s33.3 11.1 45.2-2L128 146.3V448c0 17.7 14.3 32 32 32s32-14.3 32-32V146.3l32.4 35.4c11.9 13 32.2 13.9 45.2 2s13.9-32.2 2-45.2l-88-96zM320 64c0 17.7 14.3 32 32 32h50.7l-73.4 73.4c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H429.3l73.4-73.4c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8H352c-17.7 0-32 14.3-32 32zm96 192c-12.1 0-23.2 6.8-28.6 17.7l-64 128-16 32c-7.9 15.8-1.5 35 14.3 42.9s35 1.5 42.9-14.3l7.2-14.3h88.4l7.2 14.3c7.9 15.8 27.1 22.2 42.9 14.3s22.2-27.1 14.3-42.9l-16-32-64-128C439.2 262.8 428.1 256 416 256zM395.8 400L416 359.6 436.2 400H395.8z" />
+                            </svg>
+                        </div>
+                        <br />
+                        <div>
+                            <h2 class="listHeading">
+                                <span class="titleHeading">Title</span>
+                            </h2>
+                            <ul id="titleList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="relatedDoc-cell">
+                    <h2 class="listHeading">
+                        <span class="titleHeading">Related Document</span>
+                    </h2>
+                    <ul id="relatedDocumentList">
+                    </ul>
+                </div>
+                <div class="folder-cell">
+                    <h2 class="listHeading">
+                        <span class="titleHeading">Archive Favourites</span>
+                    </h2>
+                    <ul id="folderList">
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="grid-item contentBody">
+            <div class="searchDiv">
+                <div id="searchDivWithoutDate">
+                    <label class="textStyling">Search For:</label>
+                    <input class="searchBar" type="text" id="searchTextId" placeholder="Type and hit enter to search" />
+                    <i class="fa fa-search searchIcon" aria-hidden="true" id="searchWord" onclick="searchWord();"></i>
+                    <input class="linkedTab" type="button" value="Clear" onclick="clearSearch();" />
+                    <button type="button" class="collapseDateSearch" onclick="showHideDateSearch(false)"> <i class="fa fa-angle-double-down" title="Advanced Search" aria-hidden="true"></i></button>
+                    <label class="searchProgressMessage" id="searchInProgressId"></label>
+                    <input class="linkedTab documentDetails" onclick="loadNotesDetailsFunc();" type="button" value="Document Details" />
+                </div>
+
+                <div id="searchDivWithDate">
+                    <label class="textStyling">Search For:</label>
+                    <input class="searchBar" type="text" id="searchTextIdWithDate" placeholder="Type and hit enter to search" />
+                    <label class="searchProgressMessage" id="searchInProgressIdDate"></label>
+                    <br />
+                    <label class="textStyling">Date From:</label>
+                    <input type="date" id="startDate" class="dateFilter" />
+                    <label class="textStyling">To:</label>
+                    <input type="date" id="endDate" class="dateFilter" />
+                    <i class="fa fa-search searchIcon" aria-hidden="true" id="searchWord" onclick="searchWord(true);"></i>
+                    <input class="linkedTab" type="button" value="Clear" onclick="clearSearch();" />
+                    <button type="button" class="collapseDateSearch" onclick="showHideDateSearch(true)"> <i class="fa fa-angle-double-up" title="Hide" aria-hidden="true"></i></button>
+                    <input class="linkedTab documentDetails" onclick="loadNotesDetailsFunc();" type="button" value="Document Details" />
+                </div>
+            </div>
+            <div class="emlContent">
+                <div class="spinner" id="spinner">
+                    <img src="~/image/spinner.gif" />
+                    <p id="slowLoadText">This action may take time to complete. <br /> Please be patient whilst we work on returning your result.</p>
+                </div>
+                <div id="emlResponse">
+                    <div class="showPageLoadContent" id="showPageLoadContentId">
+                        <div class="teamMessageWell"> <img src="~/image/head_transp_m.ico" class="messageIcon" /> Message from the archive team!</div>
+                        Congratulations on choosing a first-class Archive product for viewing your archive Notes databases! <br /> <br />
+                        Before you begin using Archive Viewer Plus, you’ll need to attach your archive databases. <br />
+                        To learn how to do this and use the product, please read the user guide. <br /> <br />
+                        Happy searching and viewing of your archived Notes databases! <br />
+                        For more information, contact us at <a href="https://adopteq.com/" target="_blank"> Adopteq.</a> <br />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="progresDivParent">
+        <div class="progressDiv">
+            <div class="progressBar">/</div> <div class="progressMessage" id="documentCount"></div>
+            <div class="version">@Html.Raw(ViewBag.appVersion)</div>
+        </div>
+    </div>
+</div>
+
+<div id="notesDialogBox">
+    <div class="notesDialogBoxBody">
+        <div class="notesDialogBoxHeader">
+            <p><img src="~/image/head_transp_m.ico" /> Document Details</p>
+            <div class="dialogCloseButton" onclick="closeNotesDialog();">&#x2715;</div>
+        </div>
+        <div class="notesDialogBody" id="notesDialogBody">
+        </div>
+    </div>
+</div>
+
+<div id="foldersDialogBox">
+    <div class="foldersDialogBoxBody">
+        <div class="notesDialogBoxHeader">
+            <p><img src="~/image/head_transp_m.ico" /> Please select folders</p>
+            <div class="dialogCloseButton" onclick="closeFolderDialog();">&#x2715;</div>
+        </div>
+        <div class="searchInput" id="searchInput">
+            <input type="text" id="searchWithSuggestionInput" class="searchWithSuggestionInput" autocomplete="off" placeholder="Search archive folders" />
+            <div class="resultBox" id="resultBox">
+            </div>
+        </div>
+        <div class="folderSubmit">
+            <div class="pagination" id="paginationId"></div>
+            <input type="submit" value="Continue" onclick="folderSubmit();" />
+        </div>
+    </div>
+</div>
+
+<div id="licenseExpiryDialog">
+    <div class="licenseExpiryBody">
+        <div class="notesDialogBoxHeader">
+            <p><img src="~/image/head_transp_m.ico" /> Warning</p>
+        </div>
+        <div class="licenseExpiryContent">
+            <label>Your license has expired. <br /> Please contact your administrator.</label>
+        </div>
+    </div>
+</div>
+
+<div id="setupDialogBox">
+    <div class="setupDialogBoxBody">
+        <div class="dialogBoxHeader">
+            <p>Setup</p>
+            <div class="dialogCloseButton">&#10006;</div>
+        </div>
+        <div class="dialogRegisterPanel">
+            <button>Save & Close</button>
+            <button>Check/Register License</button>
+            <button>Unregister License</button>
+            <input type="text" />
+        </div>
+        <div class="dialogBoxBody">
+            <h2>Configure your storage facility</h2>
+            <br />
+            <div class="dialogFileSystemButton">
+                <button>File System</button>
+                <button>Azure</button>
+            </div>
+            <br />
+            <div class="dialogFileSystemPanel">
+                <div class="dialogFileSystemContent">
+                    <p>Archive Root Folder</p>
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="dialogAzurePanel">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Home.js"></script>

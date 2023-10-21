@@ -1,0 +1,252 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0px;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.btnSync {
+    margin: 5px 5px 0px 0px;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+}
+
+.messageIcon {
+    height: 40px;
+}
+
+.teamMessageWell {
+    min-height: 20px;
+    padding: 5px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+}
+
+    .teamMessageWell ul li {
+        margin: 0px 5px;
+    }
+
+.nav {
+    display: -webkit-box;
+}
+
+.section {
+    width: 25%;
+    max-height: 85vh;
+    float: left;
+    background-color: #f1f1f1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+    .section ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        background-color: #f1f1f1;
+    }
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+    li a:hover {
+        background-color: #dddcdc;
+        color: #fff;
+    }
+
+.member-list {
+    width: 300px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.member {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.member-name {
+    font-weight: bold;
+}
+
+.member-email {
+    color: #666;
+}
+
+.searchClass {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.folderTitle{
+    font-weight:bold;
+}
+
+.folderPath{
+    font-size:15px;
+}
+
+.folderListli{
+    margin-bottom:10px;
+}
+
+.deleteIcon {
+    color: #a21c1c;
+    font-size: 18px !important;
+    margin-right: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+#addFolderDialog {
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 1000;
+}
+
+.addFolderBody {
+    width: 40%;
+    height: auto;
+    margin: 10% auto;
+    background-color: #f2f2f2;
+    border: 2px solid #666666;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.addFolderHeader {
+    display: flex;
+    justify-content: space-between;
+    background: var(--backgroundColor);
+    border-bottom: 1px solid grey;
+}
+
+    .addFolderHeader p {
+        font-size: 13px;
+        margin: 9px 6px;
+        font-weight: 550;
+    }
+
+        .addFolderHeader p img {
+            width: 20px;
+        }
+
+.addFolderContent {
+    padding: 10px 10px;
+}
+
+    .addFolderContent ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        background-color: #f1f1f1;
+    }
+
+.dialogCloseButton {
+    padding: 8px 19px;
+    font-weight: bold;
+}
+
+
+    .dialogCloseButton:hover {
+        background: #dc3545;
+        color: white;
+    }
+
+.spinner {
+    background-repeat: no-repeat !important;
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background: url(../image/spinner.gif);
+    background-size: 100%;
+}
+
+footer {
+    background-color: #f1f1f1;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    text-align: right;
+    padding-right: 16px;
+}
+
+    footer p {
+        margin: 2px 0px;
+    }
+
+Style the select element select {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #c5c5c5;
+    color: #333;
+}
+
+Style the options option {
+    font-size: 16px;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+Style the selected option option:checked {
+    background-color: #007bff;
+    color: #fff;
+}
+
+Scroll Design ::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bbbbbb;
+    border-radius: 10px;
+}
