@@ -84,14 +84,16 @@ namespace Archive_Reader.Controllers
         [HttpGet]
         public string GetHtmlFromEmlFilePath(string filePath, string fileName)
         {  
-            var fileData = System.IO.File.ReadAllText("C:\\Users\\sayed\\OneDrive\\Desktop\\Archive Viewer Web\\ArchiveReader\\wwwroot\\DemoFolder\\email.htm");
+            //var fileData = System.IO.File.ReadAllText("C:\\Users\\sayed\\OneDrive\\Desktop\\Archive Viewer Web\\ArchiveReader\\wwwroot\\DemoFolder\\email.htm");
+            var fileData = System.IO.File.ReadAllText(@"..\ArchiveReader\wwwroot\DemoFolder\email.htm");
             return fileData;
         }
 
         [HttpGet]
         public async Task<string> LoadFolders()
         {
-            var fileData = System.IO.File.ReadAllText("C:\\Users\\sayed\\OneDrive\\Desktop\\Archive Viewer Web\\ArchiveReader\\wwwroot\\DemoFolder\\LoadFolders.json");
+            //var fileData = System.IO.File.ReadAllText("C:\\Users\\sayed\\OneDrive\\Desktop\\Archive Viewer Web\\ArchiveReader\\wwwroot\\DemoFolder\\LoadFolders.json");
+            var fileData = System.IO.File.ReadAllText(@"..\ArchiveReader\wwwroot\DemoFolder\LoadFolders.json");
             return fileData;
         }
 
@@ -106,8 +108,9 @@ namespace Archive_Reader.Controllers
         {
             try
             {
-                string filesJson = System.IO.File.ReadAllText("C:\\Users\\sayed\\OneDrive\\Desktop\\Archive Viewer Web\\ArchiveReader\\wwwroot\\DemoFolder\\ReadTitleJsonFIle.json");
-                var fileList = JsonConvert.DeserializeObject<List<Files>>(filesJson);
+                //string filesJson = System.IO.File.ReadAllText("C:\\Users\\sayed\\OneDrive\\Desktop\\Archive Viewer Web\\ArchiveReader\\wwwroot\\DemoFolder\\ReadTitleJsonFIle.json");
+                var fileData = System.IO.File.ReadAllText(@"..\ArchiveReader\wwwroot\DemoFolder\ReadTitleJsonFIle.json");
+                var fileList = JsonConvert.DeserializeObject<List<Files>>(fileData);
                 return JsonConvert.SerializeObject(fileList);
             }
             catch (Exception)

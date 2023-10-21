@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\sayed\\OneDrive\\Desktop\\AVWDemo\\ArchiveReader\\wwwroot\\image\\Dashboard - Option 1.png",
+      "PackagePath": "staticwebassets\\image\\Dashboard - Option 1.png"
+    },
+    {
       "Id": "C:\\Users\\sayed\\OneDrive\\Desktop\\AVWDemo\\ArchiveReader\\wwwroot\\image\\adopteq_logo.ico",
       "PackagePath": "staticwebassets\\image\\adopteq_logo.ico"
     },
@@ -39,6 +43,10 @@
     {
       "Id": "C:\\Users\\sayed\\OneDrive\\Desktop\\AVWDemo\\ArchiveReader\\wwwroot\\image\\head_transp_m.ico",
       "PackagePath": "staticwebassets\\image\\head_transp_m.ico"
+    },
+    {
+      "Id": "C:\\Users\\sayed\\OneDrive\\Desktop\\AVWDemo\\ArchiveReader\\wwwroot\\image\\image001.png",
+      "PackagePath": "staticwebassets\\image\\image001.png"
     },
     {
       "Id": "C:\\Users\\sayed\\OneDrive\\Desktop\\AVWDemo\\ArchiveReader\\wwwroot\\image\\spinner.gif",
